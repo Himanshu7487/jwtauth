@@ -30,19 +30,15 @@ const UserSchema = new Schema({
   };
 
 
-  UserSchema.statics.findData = async (email, password) => {
+  UserSchema.statics.findData = async (email) => {
     const user = await User.findOne({ email });
   
     if (!user) {
-      throw new Error('Unable to login');
+      throw new Error('login failed');
     }
-  
-    const isMatch = await bcrypt.compare(password, user.password);
-  
     if (!isMatch) {
-      throw new Error('Unable to login');
+      throw new Error('login failed');
     }
-  
     return user;
   };  
 
