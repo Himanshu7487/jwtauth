@@ -30,16 +30,14 @@ const UserSchema = new Schema({
   };
 
 
-  UserSchema.statics.findData = async (email) => {
+  UserSchema.statics.findByData = async (email) => {
     const user = await User.findOne({ email });
-  
-    if (!user) {
-      throw new Error('login failed');
-    }
-    if (!isMatch) {
-      throw new Error('login failed');
-    }
-    return user;
+       console.log(user,"test usereeeeeeeeeeeee");
+       user.find((element)=>{
+         if(element.email==email){
+           return true
+         }
+       })
   };  
 
 var User = mongoose.model('User', UserSchema);

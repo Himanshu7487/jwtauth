@@ -17,13 +17,13 @@ module.exports.createUser= async(req,res)=>{
 
 module.exports.login = async(req, res) => {
     try {
-        const user = await User.findData(
+        const user = await User.findByData(
           req.body.email,
           req.body.password,
         );
         const token = await user.jwtToken();
-        res.send({ user, token });
-      } catch (e) {
-        res.status(400).send('Invalid credentials');
+        // res.send({ user, token });
+      } catch (error) {
+        res.status(500).send('Invalid Data');
       }
 }
