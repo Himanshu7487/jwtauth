@@ -22,7 +22,7 @@ module.exports.login = async(req, res) => {
           req.body.password,
         );
         const token = await user.jwtToken();
-        // res.send({ user, token });
+        res.send({ user, token });
       } catch (error) {
         res.status(500).send('Invalid Data');
       }

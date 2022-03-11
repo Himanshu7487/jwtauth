@@ -30,11 +30,10 @@ const UserSchema = new Schema({
   };
 
 
-  UserSchema.statics.findByData = async (email) => {
-    const user = await User.findOne({ email });
-       console.log(user,"test usereeeeeeeeeeeee");
+  UserSchema.statics.findByData = async (email, password) => {
+    const user = await User.findOne({ email, password});
        user.find((element)=>{
-         if(element.email==email){
+         if(element.email==email && element.password==password){
            return true
          }
        })
